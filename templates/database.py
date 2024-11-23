@@ -1,7 +1,15 @@
+from flask import *
 import sqlite3
 
+app = Flask(__name__)
 connection = sqlite3.connect("database.sqlite")
 cursor = connection.cursor()
+
+def make_product_card():
+    name = str(info[1])
+    description = str(info[2])
+    price = str(info[3]) + " UAH"
+    return f'<div class="product-card"><h3>{name}</h3><p>{description}</p><p>{price}</p></div>'
 
 request = ("CREATE TABLE IF NOT EXISTS products"
            "(id INTEGER PRIMARY KEY AUTOINCREMENT,"
