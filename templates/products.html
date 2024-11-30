@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{%block content %}
+    {% for card in cards %}
+       {% for product in products %}
+            <div class="product">
+                <img src="{{ url_for('static', filename=product['image']) }}" alt="{{ product['name'] }}" class="product-image">
+                <div class="product-details">
+                    <h2>{{ product['name'] }}</h2>
+                    <p>{{ product['description'] }}</p>
+                    <p><strong>Цена: ${{ product['price'] }}</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+    {% endfor %}
