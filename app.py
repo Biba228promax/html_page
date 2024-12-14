@@ -12,5 +12,8 @@ def index():
     print(products)
     return render_template('products.html', products=products)
 
+@app.route("/phone")
+def phone():
+    return "Hello!"
 
 app.run(debug=True)

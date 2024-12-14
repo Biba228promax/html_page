@@ -21,7 +21,9 @@ products = [('Apple iPhone 16 Pro Max 256GB White Titanium', 'телефон', 6
             ('ASUS TUF Gaming F15', 'ноутбук', 53999, 'product4.jpg'),
             ('Apple MacBook Pro 14 M4 16/1TB Space Gray', 'ноутбук', 99999, 'product5.jpg'),
             ('ASUS ROG Strix Scar 17', 'ноутбук', 169594, 'product6.jpg'),
-            ('Apple iPad Pro 12.9" M2 Wi-Fi 1TB Space Gray', 'планшет', 66999, 'product7.jpg')]
+            ('Apple iPad Pro 12.9" M2 Wi-Fi 1TB Space Gray', 'планшет', 66999, 'product7.jpg'),
+            ('Samsung Galaxy Tab S10 Ultra 5G 12/512Gb Moonstone Gray', 'планшет', 66999, 'product8.jpg' ),
+            ('Apple iPad 10.9'' (10 Gen) WiFi 64GB Blue', 'планшет', 16999, 'product9.jpg')]
 
 for product in products:
         cursor.execute("INSERT INTO products (name, description, price, img) VALUES (?, ?, ?, ?)", product)

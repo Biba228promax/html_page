@@ -2,7 +2,7 @@
 
 {% block content %}
     {% for product in products %}
-        <a href="ваша_ссылка.html" class="product-link">
+        <a href="{{url_for('phone')}}" class="product-link">
             <div class="product">
                 <img src="{{ url_for('static', filename='img/' + product[4]) }}" alt="{{ product[1] }}" class="product-image">
                 <div class="product-details">
