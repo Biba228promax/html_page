@@ -2,13 +2,15 @@
 
 {% block content %}
     {% for product in products %}
-        <div class="product">
-            <img src="{{ url_for('static', filename=product['image']) }}" alt="{{ product['name'] }}" class="product-image">
-            <div class="product-details">
-                <h2>{{ product['name'] }}</h2>
-                <p>{{ product['description'] }}</p>
-                <p><strong>Цена: ${{ product['price'] }}</strong></p>
+        <a href="ваша_ссылка.html" class="product-link">
+            <div class="product">
+                <img src="{{ url_for('static', filename='img/' + product[4]) }}" alt="{{ product[1] }}" class="product-image">
+                <div class="product-details">
+                    <h2>{{ product[1] }}</h2>
+                    <p>{{ product[2] }}</p>
+                    <p><strong>Цена: {{ product[3] }} грн</strong></p>
+                </div>
             </div>
-        </div>
+        </a>
     {% endfor %}
 {% endblock %}

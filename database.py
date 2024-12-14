@@ -12,7 +12,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS products
     name VARCHAR(255),
     description VARCHAR(255),
     price INTEGER,
-    image VARCHAR(200))''')
+    img VARCHAR(200))''')
 
 
 products = [('Apple iPhone 16 Pro Max 256GB White Titanium', 'телефон', 60892, 'product1.jpg'),
@@ -20,14 +20,15 @@ products = [('Apple iPhone 16 Pro Max 256GB White Titanium', 'телефон', 6
             ('Xiaomi 14 Ultra 16/512Gb White', 'телефон', 52999, 'product3.jpg'),
             ('ASUS TUF Gaming F15', 'ноутбук', 53999, 'product4.jpg'),
             ('Apple MacBook Pro 14 M4 16/1TB Space Gray', 'ноутбук', 99999, 'product5.jpg'),
-            ('ASUS ROG Strix Scar 17', 'ноутбук', 169594, 'product6.jpg')]
+            ('ASUS ROG Strix Scar 17', 'ноутбук', 169594, 'product6.jpg'),
+            ('Apple iPad Pro 12.9" M2 Wi-Fi 1TB Space Gray', 'планшет', 66999, 'product7.jpg')]
 
 for product in products:
-        cursor.execute("INSERT INTO products (name, description, price, image) VALUES (?, ?, ?, ?)", product)
+        cursor.execute("INSERT INTO products (name, description, price, img) VALUES (?, ?, ?, ?)", product)
 
 conn.commit()
 
-    # Получение данных
+
 products = cursor.execute("SELECT * FROM products").fetchall()
 conn.close()
 

@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: #35ad23;
     color: #fff;
     padding: 10px 0;
     text-align: center;
@@ -20,8 +20,15 @@ header {
 
 .products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr); /* Сетка с 3 колонками */
+    grid-template-rows: repeat(3, auto); /* Сетка с 3 строками */
+    gap: 20px;
+    justify-items: center; /* Центрируем карточки в сетке */
+}
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .product {
@@ -30,23 +37,35 @@ header {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 300px; /* Ширина карточки */
+    height: 450px; /* Высота карточки */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s;
 }
 
-.product img {
-    max-width: 100px;
-    display: block;
-    margin: 0 auto 10px auto;
+.product:hover {
+    background-color: #f0f0f0;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px; /* Высота изображения */
+    object-fit: contain; /* Сохраняем пропорции изображения и полностью помещаем его в контейнер */
+    border-radius: 5px;
 }
 
 .product-details {
-    flex-grow: 1;
+    margin-top: 10px;
 }
 
 footer {
-    background-color: #333;
+    background-color: #35ad23;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0; /* Уменьшенная высота футера */
+    font-size: 12px; /* Уменьшенный размер текста */
     position: fixed;
     width: 100%;
     bottom: 0;
