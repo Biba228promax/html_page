@@ -2,13 +2,13 @@
 
 {% block content %}
     {% for product in products %}
-        <a href="{{url_for('phone')}}" class="product-link">
+        <a href="{{ url_for('product_detail', product_id=product['id']) }}" class="product-link">
             <div class="product">
-                <img src="{{ url_for('static', filename='img/' + product[4]) }}" alt="{{ product[1] }}" class="product-image">
+                <img src="{{ url_for('static', filename='img/' + product['img']) }}" alt="{{ product['name'] }}" class="product-image">
                 <div class="product-details">
-                    <h2>{{ product[1] }}</h2>
-                    <p>{{ product[2] }}</p>
-                    <p><strong>Цена: {{ product[3] }} грн</strong></p>
+                    <h2>{{ product['name'] }}</h2>
+                    <p>{{ product['description'] }}</p>
+                    <p><strong>Цена: {{ product['price'] }} грн</strong></p>
                 </div>
             </div>
         </a>
