@@ -9,10 +9,9 @@ body {
 header {
     background-color: #35ad23;
     color: #fff;
-    padding: 2px;
+    padding: 5px 0; /* Уменьшаем отступы сверху и снизу */
     text-align: center;
 }
-
 
 .container {
     width: 80%;
@@ -95,13 +94,13 @@ footer {
 
 .product-detail-page .product-detail {
     display: flex;
-    align-items: flex-start;
+    align-items: center; /* Выровнять элементы по вертикали по центру */
+    justify-content: center; /* Выровнять элементы по горизонтали по центру */
     position: relative; /* Нужно для абсолютного позиционирования внутри */
 }
 
 .product-detail-page .product-image-container {
     margin-right: 20px; /* Отступ справа */
-    margin-top: -20px; /* Отступ сверху */
 }
 
 .product-detail-page .product-image {
@@ -110,15 +109,15 @@ footer {
 }
 
 .product-detail-page .product-details {
-    flex: 1;
-    text-align: left; /* Выровнять текст влево */
+    text-align: center; /* Выровнять текст по центру */
+    font-size: 18px; /* Увеличить размер текста */
     width: 250px;
-    font-size: 20px; /* Увеличить размер текста */
 }
 
 .product-detail-page .product-price {
+    font-size: 20px; /* Увеличить размер текста для цены */
     margin: 0; /* Обнуление отступов */
     position: absolute; /* Абсолютное позиционирование */
-    top: 300px; /* Регулируемый отступ сверху */
-    left: 0px; /* Регулируемый отступ слева */
+    top: 200px; /* Регулируемый отступ сверху */
+    left: -240px; /* Регулируемый отступ слева */
 }
