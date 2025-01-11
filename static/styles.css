@@ -9,8 +9,30 @@ body {
 header {
     background-color: #35ad23;
     color: #fff;
-    padding: 5px 0; /* Уменьшаем отступы сверху и снизу */
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header h1 {
+    flex-grow: 1;
     text-align: center;
+    margin: 0;
+}
+
+#search {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1em;
 }
 
 .container {
@@ -39,7 +61,7 @@ header {
     justify-content: space-between;
 }
 
-.product-image {
+.product img {
     width: 100%;
     height: 200px;
     object-fit: contain;
@@ -94,30 +116,30 @@ footer {
 
 .product-detail-page .product-detail {
     display: flex;
-    align-items: center; /* Выровнять элементы по вертикали по центру */
-    justify-content: center; /* Выровнять элементы по горизонтали по центру */
-    position: relative; /* Нужно для абсолютного позиционирования внутри */
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .product-detail-page .product-image-container {
-    margin-right: 20px; /* Отступ справа */
+    margin-right: 20px;
 }
 
 .product-detail-page .product-image {
-    width: 300px; /* Фиксированная ширина изображения */
-    height: auto; /* Поддерживать пропорции изображения */
+    width: 300px;
+    height: auto;
 }
 
 .product-detail-page .product-details {
-    text-align: center; /* Выровнять текст по центру */
-    font-size: 18px; /* Увеличить размер текста */
+    text-align: center;
+    font-size: 18px;
     width: 250px;
 }
 
 .product-detail-page .product-price {
-    font-size: 20px; /* Увеличить размер текста для цены */
-    margin: 0; /* Обнуление отступов */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 400px; /* Регулируемый отступ сверху */
-    left: 0px; /* Регулируемый отступ слева */
+    font-size: 20px;
+    margin: 0;
+    position: absolute;
+    top: 400px;
+    left: 0px;
 }

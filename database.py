@@ -12,7 +12,7 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS products (
     price INTEGER,
     img VARCHAR(200),
     display VARCHAR(255),
-    os VARCHAR(255),
+    operating_system VARCHAR(255),
     screen VARCHAR(255),
     battery VARCHAR(255),
     processor VARCHAR(255),
@@ -32,7 +32,7 @@ products = [
 ]
 
 for product in products:
-    cursor.execute("INSERT INTO products (name, description, price, img, display, os, screen, battery, processor, camera) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", product)
+    cursor.execute("INSERT INTO products (name, description, price, img, display, operating_system, screen, battery, processor, camera) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", product)
 
 conn.commit()
 

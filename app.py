@@ -1,12 +1,17 @@
-from flask import Flask, render_template, request, redirect, url_for
+import os
+from flask import Flask, render_template, request, redirect, url_for, flash
 import sqlite3
 
 app = Flask(__name__)
+app.secret_key = 'supersecretkey'  # Необходимо для использования flash сообщений
+app.config['UPLOAD_FOLDER'] = 'C:/Users/LOGIKA/PycharmProjects/html_page/static/img'
+
 
 def get_db_connection():
     conn = sqlite3.connect("database.sqlite")
     conn.row_factory = sqlite3.Row
     return conn
+
 
 @app.route('/')
 def index():
@@ -15,6 +20,7 @@ def index():
     connection.close()
     return render_template('products.html', products=products)
 
+
 @app.route('/product/<int:product_id>')
 def product_detail(product_id):
     connection = get_db_connection()
@@ -22,27 +28,54 @@ def product_detail(product_id):
     connection.close()
     return render_template('product_detail.html', product=product)
 
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     connection = get_db_connection()
     if request.method == 'POST':
-        name = request.form['name']
-        description = request.form['description']
-        price = request.form['price']
-        img = request.form['img']
-        connection.execute('INSERT INTO products (name, description, price, img) VALUES (?, ?, ?, ?)', (name, description, price, img))
-        connection.commit()
+        name = request.form.get('name')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        img = request.files.get('img')
+        display = request.form.get('display')
+        operating_system = request.form.get('operating_system')
+        screen = request.form.get('screen')
+        battery = request.form.get('battery')
+        processor = request.form.get('processor')
+        camera = request.form.get('camera')
+
+        if not all([name, description, price, img, display, operating_system, screen, battery, processor, camera]):
+            flash("Пожалуйста, заполните все поля, включая изображение.")
+        else:
+            img_filename = os.path.join(app.config['UPLOAD_FOLDER'], img.filename)
+
+            # Создание конечной папки, если она не существует
+            if not os.path.exists(app.config['UPLOAD_FOLDER']):
+                os.makedirs(app.config['UPLOAD_FOLDER'])
+
+            img.save(img_filename)
+            connection.execute('''INSERT INTO products (name, description, price, img, display, operating_system, screen, battery, processor, camera) 
+                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                               (name, description, price, img.filename, display, operating_system, screen, battery, processor, camera))
+            connection.commit()
+
     products = connection.execute('SELECT * FROM products').fetchall()
     connection.close()
     return render_template('admin.html', products=products)
 
-@app.route('/delete/<int:product_id>', methods=['POST'])
-def delete_product(product_id):
+
+@app.route('/admin/delete', methods=['POST'])
+def delete_product():
     connection = get_db_connection()
-    connection.execute('DELETE FROM products WHERE id = ?', (product_id,))
+    product_id = request.form['product_id']
+    connection.execute("DELETE FROM products WHERE id = ?", (product_id,))
     connection.commit()
     connection.close()
+    flash("Продукт успешно удален.")
     return redirect(url_for('admin'))
 
+
 if __name__ == "__main__":
+    if not os.path.exists(app.config['UPLOAD_FOLDER']):
+        os.makedirs(app.config['UPLOAD_FOLDER'])
     app.run(debug=True)
