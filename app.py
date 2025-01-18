@@ -53,11 +53,16 @@ def admin():
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
                 os.makedirs(app.config['UPLOAD_FOLDER'])
 
-            img.save(img_filename)
-            connection.execute('''INSERT INTO products (name, description, price, img, display, operating_system, screen, battery, processor, camera) 
-                                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-                               (name, description, price, img.filename, display, operating_system, screen, battery, processor, camera))
-            connection.commit()
+            try:
+                img.save(img_filename)
+                flash("Файл успешно сохранен.")
+                connection.execute('''INSERT INTO products (name, description, price, img, display, operating_system, screen, battery, processor, camera) 
+                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)''',
+                                   (name, description, price, img.filename, display, operating_system, screen, battery, processor, camera))
+                connection.commit()
+                flash("Продукт успешно добавлен.")
+            except Exception as e:
+                flash(f"Ошибка при загрузке файла: {e}")
 
     products = connection.execute('SELECT * FROM products').fetchall()
     connection.close()
@@ -73,6 +78,22 @@ def delete_product():
     connection.close()
     flash("Продукт успешно удален.")
     return redirect(url_for('admin'))
+
+@app.route('/purchase_info')
+def purchase_info():
+    return render_template('purchase_info.html')
+
+@app.route('/process_purchase', methods=['POST'])
+def process_purchase():
+    fio = request.form.get('fio')
+    email = request.form.get('email')
+    address = request.form.get('address')
+    phone = request.form.get('phone')
+
+    # Здесь можно добавить код для обработки данных, например, сохранить их в базу данных или отправить по email
+
+    flash("Покупка успешно оформлена!")
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
